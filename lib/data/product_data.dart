@@ -4,34 +4,82 @@ import 'package:friends_supper_shop/model/product.dart';
 final List<Product> loadedProduct=[
  Product(
       id: 'p1',
-      title: 'Red Shirt',
-      description: 'A red shirt - it is pretty red!',
-      price: 29.99,
+      title: 'Lexus',
+      description: "It is the most sold Lexus biscuit in Bangladesh.Fresh, crispy, and vegetable crackers biscuit.Amazing taste and perfect for snacks or tea time.",
+      price: 75.00,
       imageUrl:
-          'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
+          'https://images.othoba.com/images/thumbs/0301931_danish-lexus-biscuit-240-gm.jpeg',
     ),
     Product(
       id: 'p2',
-      title: 'Trousers',
-      description: 'A nice pair of trousers.',
-      price: 59.99,
+      title: 'Dano',
+      description: "Dano Daily Pusti milk is a reasonable nutritious solution for your whole family.Produced from high-quality milk ingredients, Dano Daily Pushti contains calcium, protein, and important vitamins and minerals that are necessary for your family’s everyday wellness.",
+      price: 175.99,
       imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
+          'https://i0.wp.com/www.khan.com.bd/wp-content/uploads/2020/11/Arla-Dano-Daily-Pusti-Milk-Box.jpg?fit=1200%2C1200&ssl=1',
     ),
     Product(
       id: 'p3',
-      title: 'Yellow Scarf',
-      description: 'Warm and cozy - exactly what you need for the winter.',
-      price: 19.99,
+      title: 'Tea Bag',
+      description: "Ispahani Mirzapore tea bag is produced by blending the most effective tea leaves of the best tea gardens in Bangladesh.It involves you in the latest packaging, designed to shield its excellent aroma and taste.",
+      price: 85.50,
       imageUrl:
-          'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
+          'https://images.othoba.com/images/thumbs/0253891_ispahani-mirzapore-tea-bags-25-pcs.jpeg',
     ),
     Product(
       id: 'p4',
-      title: 'A Pan',
-      description: 'Prepare any meal you want.',
+      title: 'Banana',
+      description: 'Banana is very good food for oour health.',
+      price: 40.00,
+      imageUrl:
+          'https://www.collinsdictionary.com/images/thumb/banana_64728013_250.jpg?version=4.0.257',
+    ),
+    Product(
+      id: 'p5',
+      title: 'Soyabean Oil',
+      description: 'The completely automated filling system for all SKU’s (1 Ltr, 2 Ltr, and 5 Ltr,) are from world popular Ams Ferrari, encourages to fill oil in bottles with the all-out computerization system.',
+      price: 200.99,
+      imageUrl:
+          'https://i0.wp.com/www.khan.com.bd/wp-content/uploads/2020/10/Bashundara-Soyabean-Oil-Price-in-Mirpur.jpg?fit=1200%2C1200&ssl=1',
+    ),
+    Product(
+      id: 'p6',
+      title: 'Salt',
+      description: '100% pure, free flow, crystal white, and perfectly iodized.Produced a completely 100% automatic machine of vacuum evaporated technology.',
+      price: 35.99,
+      imageUrl:
+          'https://i0.wp.com/www.khan.com.bd/wp-content/uploads/2020/10/ACI-Salt.jpg?fit=1200%2C1200&ssl=1',
+    ),
+    Product(
+      id: 'p7',
+      title: 'Fresh Tissu',
+      description: 'Made in their state-of-the-art production line, Fresh Paper Napkin tissue is made utilizing the latest technologies. With central ETP and green activities, MGI is careful around zero-outflow while manufacturing a wide cluster of scented and unscented paper napkins.',
+      price: 55.99,
+      imageUrl:
+          'https://i0.wp.com/www.khan.com.bd/wp-content/uploads/2020/12/Fresh-Paper-Napkin-Tissue.jpg?fit=1200%2C1200&ssl=1',
+    ),
+     Product(
+      id: 'p8',
+      title: 'Packet Cake',
+      description: 'Pran dry cake biscuits are amazing with tea, milk, or espresso.Delectable and crips sweet biscuit.Produced using the best quality ingredient.',
+      price: 110.00,
+      imageUrl:
+          'https://i0.wp.com/www.khan.com.bd/wp-content/uploads/2020/12/All-Time-Mixed-Fruit-Family-Cake.jpg?fit=1200%2C1200&ssl=1',
+    ),
+     Product(
+      id: 'p9',
+      title: 'Clark’s Jelly',
+      description: 'Foster Clark’s jelly dessert cherry flavor makes a flavorful and nutritious refreshment.Prepare Jell-O shots or make a favorable dessert with the Foster Clarks Cherry Flavor Jelly Dessert 85g. You can relish this cherry flavor jelly whenever to fulfill your sweet desires.',
       price: 49.99,
       imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
+          'https://i0.wp.com/www.khan.com.bd/wp-content/uploads/2021/08/Foster-Clarks-Jelly-Dessert-Cherry-85gm.png?fit=1200%2C1200&ssl=1',
+    ),
+     Product(
+      id: 'p10',
+      title: 'Lassa Semay',
+      description: 'It is very helthy for us.',
+      price: 49.99,
+      imageUrl:
+          'https://i0.wp.com/www.khan.com.bd/wp-content/uploads/2021/04/Kishwan-Lachcha-Semai-350gm.jpg?fit=1200%2C1200&ssl=1',
     ),
 ];
