@@ -1,30 +1,50 @@
-// ignore_for_file: sort_child_properties_last
+// ignore_for_file: sort_child_properties_last, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:friends_supper_shop/screen/product_detailScreen.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/product.dart';
 
 class ProductItem extends StatelessWidget {
-  final String id;
-  final String title;
-  final String imageUrl;
+  // final String id;
+  // final String title;
+  // final String imageUrl;
   const ProductItem(
-      {required this.id, required this.title, required this.imageUrl, Key? key})
+      {  Key? key})
       : super(key: key);
+
+      
 
   @override
   Widget build(BuildContext context) {
-    return GridTile(
-      child: Image.network(
-        imageUrl,
-        fit: BoxFit.cover,
-      ),
-      footer: GridTileBar(
-        
-          title: Text(title),
-          backgroundColor: Colors.black54,
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.favorite_border),
-          ),trailing: IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart)),),
-    );
+    final product = Provider.of<Product>(context,listen: false);
+    return  ClipRRect(
+          borderRadius: BorderRadius.circular(7),
+          child: GridTile(
+            child: GestureDetector(
+              onTap: (){
+                Navigator.of(context).pushNamed(ProductDetailScreen.routeName,arguments: product.id);
+              },
+              child: Image.network(
+                product.imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
+            footer: GridTileBar(
+              title: Text(product.title),
+              backgroundColor: Colors.black.withOpacity(0.7),
+              leading:  Consumer<Product>(
+               builder: (context, product, child) =>  IconButton(
+                onPressed: () {product.toggoleFavouriteStatus();},
+                icon: Icon(product.isFavourite? Icons.favorite:Icons.favorite_outline_outlined, color: Colors.deepOrange,),
+              ),),
+              trailing:
+                  IconButton(onPressed: () {}, icon: Icon( Icons.shopping_cart,color: Theme.of(context).accentColor,)),
+            ),
+          ),
+        );
+      
+    
   }
 }

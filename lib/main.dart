@@ -1,8 +1,12 @@
 
- // ignore_for_file: unused_local_variable
+ // ignore_for_file: unused_local_variable, prefer_const_constructors
  
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
+import 'package:friends_supper_shop/provider/product.dart';
+import 'package:friends_supper_shop/provider/products.dart';
+import 'package:friends_supper_shop/screen/product_detailScreen.dart'; 
 import 'package:friends_supper_shop/screen/products_overview_screen.dart';
+import 'package:provider/provider.dart';
 
 
 void main() {
@@ -16,15 +20,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
  
 
-    return MaterialApp(
-       
-       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        
-        
-        primarySwatch:  Colors.deepOrange,
+    return ChangeNotifierProvider(
+      
+         
+
+      create: (context) =>Products(),
+      child: MaterialApp(
+         
+         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          
+          
+          primarySwatch:  Colors.deepOrange,
+          accentColor: Colors.red,
+          fontFamily: 'Lato',
+          
+          
+        ),
+        initialRoute: '/',
+        routes: {
+          '/':(context) => ProductOverviewScreen(),
+          ProductDetailScreen.routeName:(context) => ProductDetailScreen()
+        },
       ),
-      home: const ProductOverviewScreen(),
     );
   }
   
