@@ -1,6 +1,9 @@
-// ignore_for_file: unused_field, unused_element
+// ignore_for_file: unused_field, unused_element, prefer_final_fields
 
 import 'package:flutter/cupertino.dart';
+import 'package:friends_supper_shop/provider/cart.dart';
+
+import 'cart.dart';
 
 class CartItem {
   final String id;
@@ -16,9 +19,17 @@ class CartItem {
 }
 
 class Cart with ChangeNotifier {
-  late Map<String, CartItem> _items={};
+  late Map<String, CartItem> _items = {};
 
-  int get itemCount{
+  double get totalAmount {
+    var total = 0.0;
+    _items.forEach((key, value) {
+      total += value.price * value.quantity;
+    });
+    return total;
+  }
+
+  int get itemCount {
     return _items.length;
   }
 
@@ -33,7 +44,7 @@ class Cart with ChangeNotifier {
           (existingCartItem) => CartItem(
               id: existingCartItem.id,
               title: existingCartItem.title,
-              quantity: existingCartItem.quantity+1,
+              quantity: existingCartItem.quantity + 1,
               price: existingCartItem.price));
     } else {
       _items.putIfAbsent(
@@ -46,5 +57,4 @@ class Cart with ChangeNotifier {
     }
     notifyListeners();
   }
- 
 }

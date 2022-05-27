@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:friends_supper_shop/provider/cart.dart';
+import 'package:friends_supper_shop/screen/cart_screen.dart';
 import 'package:friends_supper_shop/widget/badge.dart';
 import 'package:provider/provider.dart';
 import '../widget/product_gridview.dart';
@@ -48,7 +49,9 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                 value: cart.itemCount.toString(),
                 color: Colors.red)),
             child:
-                IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
+                IconButton(onPressed: () {
+                  Navigator.of(context).pushNamed(CartScreen.routeName);
+                }, icon: Icon(Icons.shopping_cart)),
           )
         ]),
         body: ProductsGridView(_showOnlyFavorite));

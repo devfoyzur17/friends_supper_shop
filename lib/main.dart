@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:friends_supper_shop/provider/cart.dart';
 import 'package:friends_supper_shop/provider/products.dart';
+import 'package:friends_supper_shop/screen/cart_screen.dart';
 import 'package:friends_supper_shop/screen/product_detailScreen.dart';
 import 'package:friends_supper_shop/screen/products_overview_screen.dart';
 import 'package:provider/provider.dart';
@@ -27,13 +28,14 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.teal ,
-          accentColor: Colors.red,
+          accentColor: Colors.teal,
           fontFamily: 'Lato',
         ),
         initialRoute: '/',
         routes: {
           '/': (context) => ProductOverviewScreen(),
-          ProductDetailScreen.routeName: (context) => ProductDetailScreen()
+          ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+          CartScreen.routeName: ((context) => CartScreen())
         },
       ),
     );

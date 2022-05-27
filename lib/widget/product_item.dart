@@ -1,4 +1,4 @@
-// ignore_for_file: sort_child_properties_last, prefer_typing_uninitialized_variables, unused_local_variable
+// ignore_for_file: sort_child_properties_last, prefer_typing_uninitialized_variables, unused_local_variable, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:friends_supper_shop/provider/cart.dart';
@@ -44,7 +44,7 @@ class ProductItem extends StatelessWidget {
               trailing:
                   IconButton(onPressed: () {
                     cart.addItem(product.id, product.price, product.title);
-                  }, icon: Icon( Icons.shopping_cart,color: Theme.of(context).accentColor,)),
+                  }, icon: Icon( Icons.shopping_cart,color: Colors.red,)),
             ),
           ),
         );
