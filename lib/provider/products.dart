@@ -39,7 +39,7 @@ class Products with ChangeNotifier {
       description: 'Banana is very good food for oour health.',
       price: 40.00,
       imageUrl:
-          'https://www.collinsdictionary.com/images/thumb/banana_64728013_250.jpg?version=4.0.257',
+          'https://img.freepik.com/free-vector/vector-ripe-yellow-banana-bunch-isolated-white-background_1284-45456.jpg?t=st=1653645787~exp=1653646387~hmac=44f63dd0e3e2da2781bb5df62c2b48f6412c585c2ac4b1820d722aec326cbd92&w=740',
     ),
     Product(
       id: 'p5',

@@ -1,6 +1,7 @@
-// ignore_for_file: sort_child_properties_last, prefer_typing_uninitialized_variables
+// ignore_for_file: sort_child_properties_last, prefer_typing_uninitialized_variables, unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:friends_supper_shop/provider/cart.dart';
 import 'package:friends_supper_shop/screen/product_detailScreen.dart';
 import 'package:provider/provider.dart';
 
@@ -19,6 +20,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context,listen: false);
+    final cart = Provider.of<Cart>(context, listen: false);
     return  ClipRRect(
           borderRadius: BorderRadius.circular(7),
           child: GridTile(
@@ -40,7 +42,9 @@ class ProductItem extends StatelessWidget {
                 icon: Icon(product.isFavourite? Icons.favorite:Icons.favorite_outline_outlined, color: Colors.deepOrange,),
               ),),
               trailing:
-                  IconButton(onPressed: () {}, icon: Icon( Icons.shopping_cart,color: Theme.of(context).accentColor,)),
+                  IconButton(onPressed: () {
+                    cart.addItem(product.id, product.price, product.title);
+                  }, icon: Icon( Icons.shopping_cart,color: Theme.of(context).accentColor,)),
             ),
           ),
         );

@@ -1,13 +1,11 @@
+// ignore_for_file: unused_local_variable, prefer_const_constructors
 
- // ignore_for_file: unused_local_variable, prefer_const_constructors
- 
 import 'package:flutter/material.dart';
-import 'package:friends_supper_shop/provider/product.dart';
+import 'package:friends_supper_shop/provider/cart.dart';
 import 'package:friends_supper_shop/provider/products.dart';
-import 'package:friends_supper_shop/screen/product_detailScreen.dart'; 
+import 'package:friends_supper_shop/screen/product_detailScreen.dart';
 import 'package:friends_supper_shop/screen/products_overview_screen.dart';
 import 'package:provider/provider.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -15,38 +13,29 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
- 
+
   @override
   Widget build(BuildContext context) {
- 
-
-    return ChangeNotifierProvider(
-      
-         
-
-      create: (context) =>Products(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => Products(),
+        ),
+        ChangeNotifierProvider(create: (context) => Cart())
+      ],
       child: MaterialApp(
-         
-         debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          
-          
-          primarySwatch:  Colors.deepOrange,
+          primarySwatch: Colors.teal ,
           accentColor: Colors.red,
           fontFamily: 'Lato',
-          
-          
         ),
         initialRoute: '/',
         routes: {
-          '/':(context) => ProductOverviewScreen(),
-          ProductDetailScreen.routeName:(context) => ProductDetailScreen()
+          '/': (context) => ProductOverviewScreen(),
+          ProductDetailScreen.routeName: (context) => ProductDetailScreen()
         },
       ),
     );
   }
-  
-   
 }
-
- 
