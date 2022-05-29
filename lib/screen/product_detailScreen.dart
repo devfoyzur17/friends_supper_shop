@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_declarations
+// ignore_for_file: prefer_const_constructors, prefer_const_declarations, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,8 +19,29 @@ class ProductDetailScreen extends StatelessWidget {
 
      
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(title: Text(loadedProduct.title)),
-      body: Center(child: Image.network(loadedProduct.imageUrl),),
+      body: SingleChildScrollView(
+        child: Column(children: [
+
+          Container(
+            height: 300,
+            width: double.infinity,
+            child: Image.network(loadedProduct.imageUrl,fit: BoxFit.fitHeight,),
+      
+          ),
+          SizedBox(height: 15,),
+          Text(loadedProduct.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 1, wordSpacing: 1),),
+            SizedBox(height: 10,),
+          Text("\৳ ${loadedProduct.price}", style: TextStyle(fontSize: 17,  color: Colors.red),),
+            SizedBox(height: 10,),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Text(loadedProduct.description ,style: TextStyle(color: Colors.grey,fontSize: 16),softWrap: true,textAlign: TextAlign.center,))
+          
+        ],),
+      ),
     );
   }
 }

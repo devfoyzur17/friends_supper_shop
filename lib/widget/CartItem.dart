@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_brace_in_string_interps, unnecessary_string_escapes
+// ignore_for_file: prefer_const_constructors, unnecessary_brace_in_string_interps, unnecessary_string_escapes, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

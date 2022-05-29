@@ -1,9 +1,6 @@
 // ignore_for_file: unused_field, unused_element, prefer_final_fields
 
-import 'package:flutter/cupertino.dart';
-import 'package:friends_supper_shop/provider/cart.dart';
-
-import 'cart.dart';
+import 'package:flutter/cupertino.dart'; 
 
 class CartItem {
   final String id;
@@ -59,6 +56,11 @@ class Cart with ChangeNotifier {
   }
   void removeItem(String productId){
     _items.remove(productId);
+    notifyListeners();
+  }
+
+  void clear(){
+    _items= {};
     notifyListeners();
   }
 }
