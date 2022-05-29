@@ -5,6 +5,7 @@ import 'package:friends_supper_shop/provider/cart.dart';
 import 'package:friends_supper_shop/provider/order.dart';
 import 'package:friends_supper_shop/provider/products.dart';
 import 'package:friends_supper_shop/screen/cart_screen.dart';
+import 'package:friends_supper_shop/screen/order_screen.dart';
 import 'package:friends_supper_shop/screen/product_detailScreen.dart';
 import 'package:friends_supper_shop/screen/products_overview_screen.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => ProductOverviewScreen(),
           ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
-          CartScreen.routeName: ((context) => CartScreen())
+          CartScreen.routeName: ((context) => CartScreen()),
+          OrderScreen.routeName:(context) => OrderScreen()
         },
       ),
     );

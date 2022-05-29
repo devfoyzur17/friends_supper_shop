@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:friends_supper_shop/provider/cart.dart';
 import 'package:friends_supper_shop/screen/cart_screen.dart';
+import 'package:friends_supper_shop/widget/app_drawer.dart';
 import 'package:friends_supper_shop/widget/badge.dart';
 import 'package:provider/provider.dart';
 import '../widget/product_gridview.dart';
@@ -22,6 +23,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         appBar: AppBar(title: Text("Friends supper shop!"), actions: [
           PopupMenuButton(
               onSelected: (FilterOption value) {
@@ -54,6 +56,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                 }, icon: Icon(Icons.shopping_cart)),
           )
         ]),
+        drawer: AppDrawer(),
         body: ProductsGridView(_showOnlyFavorite));
   }
 }
