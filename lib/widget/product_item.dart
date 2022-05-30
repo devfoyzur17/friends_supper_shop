@@ -1,4 +1,4 @@
-// ignore_for_file: sort_child_properties_last, prefer_typing_uninitialized_variables, unused_local_variable, prefer_const_constructors
+// ignore_for_file: sort_child_properties_last, prefer_typing_uninitialized_variables, unused_local_variable, prefer_const_constructors, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:friends_supper_shop/provider/cart.dart';
@@ -11,44 +11,63 @@ class ProductItem extends StatelessWidget {
   // final String id;
   // final String title;
   // final String imageUrl;
-  const ProductItem(
-      {  Key? key})
-      : super(key: key);
-
-      
+  const ProductItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context,listen: false);
+    final product = Provider.of<Product>(context, listen: false);
     final cart = Provider.of<Cart>(context, listen: false);
-    return  ClipRRect(
-          borderRadius: BorderRadius.circular(7),
-          child: GridTile(
-            child: GestureDetector(
-              onTap: (){
-                Navigator.of(context).pushNamed(ProductDetailScreen.routeName,arguments: product.id);
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(7),
+      child: GridTile(
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
+                arguments: product.id);
+          },
+          child: Image.network(
+            product.imageUrl,
+            fit: BoxFit.cover,
+          ),
+        ),
+        footer: GridTileBar(
+          title: Text(product.title),
+          backgroundColor: Colors.black.withOpacity(0.7),
+          leading: Consumer<Product>(
+            builder: (context, product, child) => IconButton(
+              onPressed: () {
+                product.toggoleFavouriteStatus();
               },
-              child: Image.network(
-                product.imageUrl,
-                fit: BoxFit.cover,
+              icon: Icon(
+                product.isFavourite
+                    ? Icons.favorite
+                    : Icons.favorite_outline_outlined,
+                color: Colors.deepOrange,
               ),
             ),
-            footer: GridTileBar(
-              title: Text(product.title),
-              backgroundColor: Colors.black.withOpacity(0.7),
-              leading:  Consumer<Product>(
-               builder: (context, product, child) =>  IconButton(
-                onPressed: () {product.toggoleFavouriteStatus();},
-                icon: Icon(product.isFavourite? Icons.favorite:Icons.favorite_outline_outlined, color: Colors.deepOrange,),
-              ),),
-              trailing:
-                  IconButton(onPressed: () {
-                    cart.addItem(product.id, product.price, product.title);
-                  }, icon: Icon( Icons.shopping_cart,color: Colors.red,)),
-            ),
           ),
-        );
-      
-    
+          trailing: IconButton(
+              onPressed: () {
+                cart.addItem(product.id, product.price, product.title);
+ 
+                Scaffold.of(context).hideCurrentSnackBar();
+
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text("Added item to cart!"),
+                  duration: Duration(seconds: 2),
+                  action: SnackBarAction(
+                      label: "Undo",
+                      onPressed: () {
+                        cart.removeSingleItem(product.id);
+                      }),
+                ));
+              },
+              icon: Icon(
+                Icons.shopping_cart,
+                color: Colors.red,
+              )),
+        ),
+      ),
+    );
   }
 }

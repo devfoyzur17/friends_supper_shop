@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, prefer_const_constructors
+// ignore_for_file: unused_local_variable, prefer_const_constructors, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:friends_supper_shop/provider/cart.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.teal,
-          accentColor: Colors.teal,
+          accentColor: Colors.deepOrange,
           fontFamily: 'Lato',
         ),
         initialRoute: '/',
