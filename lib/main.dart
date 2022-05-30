@@ -8,6 +8,7 @@ import 'package:friends_supper_shop/screen/cart_screen.dart';
 import 'package:friends_supper_shop/screen/order_screen.dart';
 import 'package:friends_supper_shop/screen/product_detailScreen.dart';
 import 'package:friends_supper_shop/screen/products_overview_screen.dart';
+import 'package:friends_supper_shop/screen/user_products_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
           '/': (context) => ProductOverviewScreen(),
           ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
           CartScreen.routeName: ((context) => CartScreen()),
-          OrderScreen.routeName:(context) => OrderScreen()
+          OrderScreen.routeName:(context) => OrderScreen(),
+          UserProductsScreen.routeName: (context) => UserProductsScreen()
         },
       ),
     );
