@@ -21,7 +21,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final _imageController = TextEditingController();
   final _form = GlobalKey<FormState>();
   var _editedProduct = Product(
-      id: null.toString(), title: "", description: "", imageUrl: "", price: 0);
+      id: "", title: "", description: "", imageUrl: "", price: 0);
   var _isInit = true;
   var _initValues = {
     "title": "",
@@ -71,7 +71,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
     _form.currentState!.save();
 
-    if (_editedProduct.id != null) {
+    if (_editedProduct.id != "") {
        Provider.of<Products>(context, listen: false).updateProduct(_editedProduct.id,_editedProduct);
     } else {
       Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
@@ -83,10 +83,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
   @override
   void didChangeDependencies() {
     if (_isInit) {
-      final productId = ModalRoute.of(context)!.settings.arguments as String;
+      final productId = ModalRoute.of(context)!.settings.arguments;
       if (productId != null) {
         _editedProduct =
-            Provider.of<Products>(context, listen: false).findById(productId);
+            Provider.of<Products>(context, listen: false).findById(productId.toString());
         _initValues = {
           "title": _editedProduct.title,
           "description": _editedProduct.description,

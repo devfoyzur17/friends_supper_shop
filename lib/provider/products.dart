@@ -1,8 +1,10 @@
 // ignore_for_file: unused_field, prefer_final_fields
 
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:friends_supper_shop/provider/product.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 class Products with ChangeNotifier {
   List<Product> _item = [
@@ -115,25 +117,40 @@ class Products with ChangeNotifier {
   }
 
   void addProduct(Product product) {
+    final url = Uri.https(
+        "friends-supper-shop-default-rtdb.firebaseio.com", "/products.json");
+    http.post(url,
+        body: json.encode({
+          "title": product.title,
+          "description": product.description,
+          "imageUrl": product.imageUrl,
+          "price": product.price,
+          "isFavorite": product.isFavourite
+        }));
+
     // _item.add(value);
-    final newProduct = Product(id: DateTime.now().toString(), title: product.title, description: product.description, imageUrl: product.imageUrl, price: product.price);
+    final newProduct = Product(
+        id: DateTime.now().toString(),
+        title: product.title,
+        description: product.description,
+        imageUrl: product.imageUrl,
+        price: product.price);
     _item.add(newProduct);
     notifyListeners();
   }
-  void updateProduct(String id, Product newProduct){
-    final productIndex = _item.indexWhere((prod) => prod.id == id );
-    if(productIndex >= 0){
+
+  void updateProduct(String id, Product newProduct) {
+    final productIndex = _item.indexWhere((prod) => prod.id == id);
+    if (productIndex >= 0) {
       _item[productIndex] = newProduct;
       notifyListeners();
-    }else{
+    } else {
       print("...");
-
     }
-
-
   }
-  void deleteProduct(String id){
-    _item.removeWhere((pro) => pro.id==id);
+
+  void deleteProduct(String id) {
+    _item.removeWhere((pro) => pro.id == id);
     notifyListeners();
   }
 }
