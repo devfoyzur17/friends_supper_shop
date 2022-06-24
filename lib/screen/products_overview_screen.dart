@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:friends_supper_shop/provider/cart.dart';
+import 'package:friends_supper_shop/provider/products.dart';
 import 'package:friends_supper_shop/screen/cart_screen.dart';
 import 'package:friends_supper_shop/widget/app_drawer.dart';
 import 'package:friends_supper_shop/widget/badge.dart';
@@ -17,8 +18,21 @@ class ProductOverviewScreen extends StatefulWidget {
   State<ProductOverviewScreen> createState() => _ProductOverviewScreenState();
 }
 
+
+
 class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   bool _showOnlyFavorite = false;
+  bool _isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    if(_isInit){
+        Provider.of<Products>(context).fatchAndSetData();
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
