@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field, prefer_final_fields
+// ignore_for_file: unused_field, prefer_final_fields, use_rethrow_when_possible, unused_element
 
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
@@ -116,41 +116,67 @@ class Products with ChangeNotifier {
     return _item.firstWhere((element) => element.id == id);
   }
 
-  void addProduct(Product product) {
-    final url = Uri.https(
-        "friends-supper-shop-default-rtdb.firebaseio.com", "/products.json");
-    http.post(url,
-        body: json.encode({
-          "title": product.title,
-          "description": product.description,
-          "imageUrl": product.imageUrl,
-          "price": product.price,
-          "isFavorite": product.isFavourite
-        }));
+  Future<void> fatchAndSetData() async {
 
-    // _item.add(value);
-    final newProduct = Product(
-        id: DateTime.now().toString(),
-        title: product.title,
-        description: product.description,
-        imageUrl: product.imageUrl,
-        price: product.price);
-    _item.add(newProduct);
-    notifyListeners();
+      final url = Uri.https("friends-supper-shop-default-rtdb.firebaseio.com", "/products.json");
+
+      try{
+
+        final response = await http.get(url);
+        
+
+      }
+      catch(error){
+        throw (error);
+      }
+
+
+
+
+
   }
 
-  void updateProduct(String id, Product newProduct) {
-    final productIndex = _item.indexWhere((prod) => prod.id == id);
-    if (productIndex >= 0) {
-      _item[productIndex] = newProduct;
+  Future<void> addProduct(Product product) async {
+    final url = Uri.https(
+        "friends-supper-shop-default-rtdb.firebaseio.com", "/products.json");
+
+    try {
+      final response = await http.post(url,
+          body: json.encode({
+            "title": product.title,
+            "description": product.description,
+            "imageUrl": product.imageUrl,
+            "price": product.price,
+            "isFavorite": product.isFavourite
+          }));
+
+      final newProduct = Product(
+          id: json.decode(response.body)['name'],
+          title: product.title,
+          description: product.description,
+          imageUrl: product.imageUrl,
+          price: product.price);
+      _item.add(newProduct);
       notifyListeners();
-    } else {
-      print("...");
+    } catch (error) {
+      throw error;
     }
   }
 
-  void deleteProduct(String id) {
-    _item.removeWhere((pro) => pro.id == id);
-    notifyListeners();
+    void updateProduct(String id, Product newProduct) {
+      final productIndex = _item.indexWhere((prod) => prod.id == id);
+      if (productIndex >= 0) {
+        _item[productIndex] = newProduct;
+        notifyListeners();
+      } else {
+        print("...");
+      }
+    }
+
+    void deleteProduct(String id) {
+      _item.removeWhere((pro) => pro.id == id);
+      notifyListeners();
+    }
   }
-}
+ 
+
