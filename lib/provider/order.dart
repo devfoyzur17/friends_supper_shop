@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_final_fields, unnecessary_null_comparison
+// ignore_for_file: prefer_final_fields, unused_local_variable
 
 import 'dart:convert';
 
@@ -26,31 +26,29 @@ class Order with ChangeNotifier {
     return [..._order];
   }
 
-  Future<void> faceAndSetProduct() async {
+  Future<void> fetchAndSetOrders() async {
     final url = Uri.https(
-        "friends-supper-shop-default-rtdb.firebaseio.com", "/orders.json");
+        'friends-supper-shop-default-rtdb.firebaseio.com', '/orders.json');
     final response = await http.get(url);
-    final List<OrderItem> loadedOrder = [];
-    final extractedData = json.decode(response.body) as Map<String, dynamic>;
- 
-   if(extractedData ==null){
+    final List<OrderItem> loadedOrders = [];
+    final extractData = json.decode(response.body) as Map<String, dynamic>;
+    if(extractData == null){
       return;
-   }
-
-    extractedData.forEach((productId, orderData) {
-      loadedOrder.add(OrderItem(
-          id: productId,
+    }
+    extractData.forEach((orderId, orderData) {
+      loadedOrders.add(OrderItem(
+          id: orderId,
           amount: orderData['amount'],
-          dateTime: DateTime.parse(orderData['dateTime']),
           product: (orderData['product'] as List<dynamic>)
               .map((item) => CartItem(
                   id: item['id'],
                   title: item['title'],
                   quantity: item['quantity'],
                   price: item['price']))
-              .toList()));
+              .toList(),
+          dateTime: DateTime.parse(orderData['dateTime'])));
     });
-    _order = loadedOrder.reversed.toList();
+    _order=loadedOrders.reversed.toList();
     notifyListeners();
   }
 
@@ -73,13 +71,13 @@ class Order with ChangeNotifier {
               .toList()
         }));
 
-    // _order.insert(
-    //     0,
-    //     OrderItem(
-    //         id: json.decode(response.body)["name"],
-    //         amount: total,
-    //         product: cartProduct,
-    //         dateTime: DateTime.now()));
-    // notifyListeners();
+    _order.insert(
+        0,
+        OrderItem(
+            id: json.decode(response.body)["name"],
+            amount: total,
+            product: cartProduct,
+            dateTime: DateTime.now()));
+    notifyListeners();
   }
 }

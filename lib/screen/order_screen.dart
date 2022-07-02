@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_declarations
+// ignore_for_file: prefer_const_constructors, prefer_const_declarations, unused_field
 
 import 'package:flutter/material.dart';
 import 'package:friends_supper_shop/widget/app_drawer.dart';
@@ -15,24 +15,21 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  
-  bool isLoading = false;
+  var _isLoading = false;
   @override
   void initState() {
-
-    Future.delayed(Duration.zero).then((_) async{
+    Future.delayed(Duration.zero).then((value) async{
       setState(() {
-        isLoading = true;
+        _isLoading = true;
       });
-     await Provider.of<Order>(context, listen: false).faceAndSetProduct();
-     setState(() {
-       isLoading = false;
-     });
+      await Provider.of<Order>(context, listen: false).fetchAndSetOrders();
+      setState(() {
+        _isLoading = false;
+      });
     });
 
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +40,7 @@ class _OrderScreenState extends State<OrderScreen> {
         title: Text("Your Order"),
       ),
       drawer: AppDrawer(),
-      body: isLoading?Center(child: CircularProgressIndicator(),) :ListView.builder(
+      body: _isLoading?Center(child: CircularProgressIndicator(),) :ListView.builder(
           itemCount: orderData.order.length,
           itemBuilder: (context, index) =>
               OrderItem(order: orderData.order[index])),

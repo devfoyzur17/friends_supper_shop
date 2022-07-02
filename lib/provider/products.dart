@@ -123,11 +123,11 @@ class Products with ChangeNotifier {
 
     try {
       final response = await http.get(url);
-      final extractedData = json.decode(response.body) as Map<String, dynamic>;
-      final List<Product> loadedProducts = [];
-      if(extractedData==null){
+      final extractedData  = json.decode(response.body) as Map<String, dynamic>;
+      if(extractedData == null){
         return;
       }
+      final List<Product> loadedProducts = [];
       extractedData.forEach((productId, productData) {
         loadedProducts.add(Product(
             id: productId,
